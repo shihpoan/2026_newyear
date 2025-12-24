@@ -23,11 +23,105 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-TW">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        {children}
+        {/* 鑽石裝飾背景 */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+          {/* 左上角鑽石群 */}
+          <div className="absolute -top-10 -left-10 text-6xl opacity-20 animate-pulse">
+            💎
+          </div>
+          <div
+            className="absolute top-20 left-32 text-4xl opacity-30 animate-bounce"
+            style={{ animationDelay: "0.5s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute top-40 left-10 text-5xl opacity-25 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          >
+            💎
+          </div>
+
+          {/* 右上角鑽石群 */}
+          <div
+            className="absolute -top-5 right-20 text-7xl opacity-20 animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute top-32 -right-10 text-5xl opacity-25 animate-bounce"
+            style={{ animationDelay: "0.8s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute top-48 right-24 text-4xl opacity-30 animate-pulse"
+            style={{ animationDelay: "1.2s" }}
+          >
+            💎
+          </div>
+
+          {/* 左下角鑽石群 */}
+          <div
+            className="absolute bottom-20 -left-8 text-6xl opacity-20 animate-bounce"
+            style={{ animationDelay: "0.6s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute bottom-40 left-20 text-5xl opacity-25 animate-pulse"
+            style={{ animationDelay: "1.5s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute -bottom-10 left-40 text-7xl opacity-20 animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          >
+            💎
+          </div>
+
+          {/* 右下角鑽石群 */}
+          <div
+            className="absolute bottom-32 right-10 text-5xl opacity-30 animate-bounce"
+            style={{ animationDelay: "1s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute -bottom-5 right-32 text-6xl opacity-20 animate-pulse"
+            style={{ animationDelay: "0.7s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute bottom-16 -right-8 text-4xl opacity-25 animate-pulse"
+            style={{ animationDelay: "1.3s" }}
+          >
+            💎
+          </div>
+
+          {/* 中間漂浮鑽石 */}
+          <div
+            className="absolute top-1/4 right-1/4 text-3xl opacity-15 animate-bounce"
+            style={{ animationDelay: "0.4s" }}
+          >
+            💎
+          </div>
+          <div
+            className="absolute bottom-1/3 left-1/3 text-3xl opacity-15 animate-pulse"
+            style={{ animationDelay: "0.9s" }}
+          >
+            💎
+          </div>
+        </div>
+
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
