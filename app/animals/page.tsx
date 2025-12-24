@@ -308,13 +308,15 @@ const Page = () => {
         {/* 標題區 */}
 
         <div className="text-center mb-6 md:mb-10">
-          <h1 className="text-3xl md:text-5xl font-bold bg-linear-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2 md:mb-3">
-            🐾 讀動物挑戰 🐾
-          </h1>
+          <div className="inline-block p-6 md:p-8 rounded-3xl bg-white/70 backdrop-blur-md shadow-xl dark:bg-gray-800/70 border border-white/20">
+            <h1 className="text-3xl md:text-5xl font-bold bg-linear-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2 md:mb-3">
+              🐾 讀動物挑戰 🐾
+            </h1>
 
-          <p className="text-gray-300 text-base md:text-lg">
-            讀出所有可愛的動物朋友！
-          </p>
+            <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg">
+              讀出所有可愛的動物朋友！
+            </p>
+          </div>
         </div>
 
         {/* 等級設定區 */}
