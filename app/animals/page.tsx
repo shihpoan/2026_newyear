@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const Page = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -274,16 +276,39 @@ const Page = () => {
   }, [handleStartGame]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-teal-900 overflow-x-hidden">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat relative overflow-x-hidden">
+      {/* 桌面版背景 */}
+      <div
+        className="hidden md:block absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/banner.png')" }}
+      ></div>
+
+      {/* 手機版背景 */}
+      <div
+        className="md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/mobile_banner.png')" }}
+      ></div>
+
       <audio ref={audioRef} preload="auto" playsInline crossOrigin="anonymous">
         <source src="/audios/bk.m4a" type="audio/mpeg" />
       </audio>
 
-      <div className="container mx-auto px-4 py-6 md:py-12 max-w-7xl">
+      {/* 返回遊戲列表按鈕 */}
+      <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20">
+        <Link
+          href="/game"
+          className="flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl hover:bg-white transition-all text-gray-700 dark:bg-gray-800/80 dark:text-gray-200 dark:hover:bg-gray-800 border border-white/20"
+        >
+          <span className="text-xl md:text-2xl">🎮</span>
+          <span className="font-semibold text-sm md:text-base">遊戲列表</span>
+        </Link>
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 py-6 md:py-12 max-w-7xl">
         {/* 標題區 */}
 
         <div className="text-center mb-6 md:mb-10">
-          <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2 md:mb-3">
+          <h1 className="text-3xl md:text-5xl font-bold bg-linear-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2 md:mb-3">
             🐾 讀動物挑戰 🐾
           </h1>
 
@@ -367,7 +392,7 @@ const Page = () => {
           <button
             onClick={handleStartGame}
             disabled={countdown !== null}
-            className="md:hidden bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-emerald-300/50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="md:hidden bg-linear-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-emerald-300/50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span className="flex items-center gap-3">
               <span className="text-2xl">🎮</span>
@@ -377,7 +402,7 @@ const Page = () => {
 
           {/* 桌面版：鍵盤提示 */}
 
-          <div className="hidden md:block md:absolute md:top-12 md:left-10 bg-gray-800/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-purple-500/50">
+          <div className="hidden md:block md:absolute md:top-12 md:right-10 bg-gray-800/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-purple-500/50">
             <p className="text-gray-200 text-base font-medium flex items-center gap-2 justify-center">
               <span className="text-xl">⌨️</span>
               按下{" "}
@@ -401,13 +426,15 @@ const Page = () => {
                   : "shadow-lg shadow-emerald-900/50"
               }`}
             >
-              <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg md:rounded-xl overflow-hidden relative">
+              <div className="aspect-square bg-linear-to-br from-gray-700 to-gray-600 rounded-lg md:rounded-xl overflow-hidden relative">
                 {imageUrl ? (
-                  <img
+                  <Image
                     src={imageUrl}
                     alt={`動物 ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     loading="eager"
+                    sizes="(max-width: 768px) 25vw, 20vw"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
@@ -433,7 +460,7 @@ const Page = () => {
               </div>
               <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-100"
+                  className="h-full bg-linear-to-r from-emerald-500 to-teal-500 transition-all duration-100"
                   style={{
                     width: `${
                       duration > 0 ? (currentTime / duration) * 100 : 0
@@ -453,7 +480,7 @@ const Page = () => {
               </div>
               <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-yellow-500 to-orange-500 transition-all duration-100"
+                  className="h-full bg-linear-to-r from-yellow-500 to-orange-500 transition-all duration-100"
                   style={{ width: `${(cycleCount / 10) * 100}%` }}
                 />
               </div>
